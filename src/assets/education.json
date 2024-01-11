@@ -1,0 +1,21 @@
+[
+    {
+        "id": 0,
+        "label": "School",
+        "placeholder": "Enter school"
+    },
+    {
+        "id": 1,
+        "label": "Degree",
+        "placeholder": "Enter degree"
+    },
+    {
+        "id": 2,
+        "label": "Start date"
+    },
+    {
+        "id": 3,
+        "label": "End date",
+        "placeholder": "Enter phone number"
+    }
+]

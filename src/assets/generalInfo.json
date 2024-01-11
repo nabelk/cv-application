@@ -1,0 +1,27 @@
+[
+    {
+        "id": 0,
+        "label": "First name",
+        "placeholder": "Enter first name"
+    },
+    {
+        "id": 1,
+        "label": "Last name",
+        "placeholder": "Enter last name"
+    },
+    {
+        "id": 2,
+        "label": "Phone number",
+        "placeholder": "Enter phone number"
+    },
+    {
+        "id": 3,
+        "label": "Email",
+        "placeholder": "Enter email"
+    },
+    {
+        "id": 4,
+        "label": "Job title",
+        "placeholder": "Enter job title"
+    }
+]
