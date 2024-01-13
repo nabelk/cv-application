@@ -7,8 +7,8 @@ export function EducationForm() {
             id: 1,
             degree: 'Bachelor of Science in Computer Science',
             school: 'University XYZ',
-            start_date: new Date(),
-            end_date: new Date(),
+            start_date: new Date('2022-05-02'),
+            end_date: new Date('2022-12-31'),
         },
     ]);
 
@@ -32,7 +32,9 @@ export function EducationForm() {
     const handleInputChange = (e, listId, field) => {
         setEducationList(
             educationList.map((edu) =>
-                edu.id === listId ? { ...edu, [field]: e.target.value } : edu,
+                edu.id === listId
+                    ? { ...edu, [field]: field.includes('date') ? e : e.target.value }
+                    : edu,
             ),
         );
     };
@@ -57,15 +59,23 @@ export function EducationForm() {
                         handleInputChange(e, list.id, 'degree');
                     }}
                 ></Input>
-                <Input label='Start date'></Input>
-                <Input label='End date'></Input>
+                <Input
+                    label='Start date'
+                    value={list.start_date}
+                    onChange={(date) => {
+                        handleInputChange(date, list.id, 'start_date');
+                    }}
+                ></Input>
+                <Input
+                    label='End date'
+                    value={list.end_date}
+                    onChange={(date) => {
+                        handleInputChange(date, list.id, 'end_date');
+                    }}
+                ></Input>
             </li>
         </ul>
     ));
-
-    educationList.map((list) => {
-        console.table(list);
-    });
 
     return (
         <section>
