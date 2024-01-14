@@ -1,19 +1,11 @@
 import { useState } from 'react';
 import { Input } from './input';
 
-export function EducationForm() {
-    const [educationList, setEducationList] = useState([
-        {
-            id: 1,
-            degree: 'Bachelor of Science in Computer Science',
-            school: 'University XYZ',
-            start_date: new Date('2022-05-02'),
-            end_date: new Date('2022-12-31'),
-        },
-    ]);
+export function EducationForm({ initialEducationData, onFormDataChange }) {
+    const [educationList, setEducationList] = useState(initialEducationData);
 
     const handleAddEducation = () => {
-        setEducationList([
+        const newEducationList = [
             ...educationList,
             {
                 id: educationList.length + 1,
@@ -22,21 +14,25 @@ export function EducationForm() {
                 start_date: new Date(),
                 end_date: new Date(),
             },
-        ]);
+        ];
+        setEducationList(newEducationList);
+        onFormDataChange(newEducationList, 1);
     };
 
     const handleDeleteEducation = (id) => {
-        setEducationList(educationList.filter((list) => list.id !== id));
+        const newEducationList = educationList.filter((list) => list.id !== id);
+        setEducationList(newEducationList);
+        onFormDataChange(newEducationList, 1);
     };
 
     const handleInputChange = (e, listId, field) => {
-        setEducationList(
-            educationList.map((edu) =>
-                edu.id === listId
-                    ? { ...edu, [field]: field.includes('date') ? e : e.target.value }
-                    : edu,
-            ),
+        const newEducationList = educationList.map((edu) =>
+            edu.id === listId
+                ? { ...edu, [field]: field.includes('date') ? e : e.target.value }
+                : edu,
         );
+        setEducationList(newEducationList);
+        onFormDataChange(newEducationList, 1);
     };
 
     const listItems = educationList.map((list) => (

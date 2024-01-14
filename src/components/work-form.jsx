@@ -1,21 +1,11 @@
 import { useState } from 'react';
 import { Input } from './input';
 
-export function WorkForm() {
-    const [workList, setWorkList] = useState([
-        {
-            id: 1,
-            title: 'Frontend Developer',
-            company_name: 'Google',
-            employment_type: 'Contract',
-            description: '',
-            start_date: new Date('2022-05-02'),
-            end_date: new Date('2022-12-31'),
-        },
-    ]);
+export function WorkForm({ initialWorkData, onFormDataChange }) {
+    const [workList, setWorkList] = useState(initialWorkData);
 
     const handleAddExperience = () => {
-        setWorkList([
+        const newWorkList = [
             ...workList,
             {
                 id: workList.length + 1,
@@ -26,24 +16,28 @@ export function WorkForm() {
                 start_date: new Date(),
                 end_date: new Date(),
             },
-        ]);
+        ];
+        setWorkList(newWorkList);
+        onFormDataChange(newWorkList, 2);
     };
 
     const handleDeleteExperience = (id) => {
-        setWorkList(workList.filter((list) => list.id !== id));
+        const newWorkList = workList.filter((list) => list.id !== id);
+        setWorkList(newWorkList);
+        onFormDataChange(newWorkList, 2);
     };
 
     const handleInputChange = (e, listId, field) => {
-        setWorkList(
-            workList.map((work) =>
-                work.id === listId
-                    ? {
-                          ...work,
-                          [field]: field.includes('date') ? e : e.target.value,
-                      }
-                    : work,
-            ),
+        const newWorkList = workList.map((work) =>
+            work.id === listId
+                ? {
+                      ...work,
+                      [field]: field.includes('date') ? e : e.target.value,
+                  }
+                : work,
         );
+        setWorkList(newWorkList);
+        onFormDataChange(newWorkList, 2);
     };
 
     const listItems = workList.map((list) => (
