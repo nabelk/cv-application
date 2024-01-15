@@ -52,6 +52,8 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
                         handleInputChange(e, list.id, 'title');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='Company Name'
                     placeholder='Enter company name'
@@ -60,6 +62,8 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
                         handleInputChange(e, list.id, 'company_name');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='Employment Type'
                     placeholder='Ex: Full-time'
@@ -68,6 +72,18 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
                         handleInputChange(e, list.id, 'employment_type');
                     }}
                 ></Input>
+            </li>
+            <li>
+                <label htmlFor='description'>Description</label>
+                <textarea
+                    name='description'
+                    id='description'
+                    placeholder='Enter description about the job'
+                    cols='30'
+                    rows='10'
+                ></textarea>
+            </li>
+            <li>
                 <Input
                     label='Start date'
                     value={list.start_date}
@@ -75,6 +91,8 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
                         handleInputChange(date, list.id, 'start_date');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='End date'
                     value={list.end_date}
