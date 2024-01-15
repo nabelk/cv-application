@@ -3,6 +3,7 @@ import './App.css';
 import { GeneralInfoForm } from './components/general-form';
 import { EducationForm } from './components/education-form';
 import { WorkForm } from './components/work-form';
+import { DisplayCV } from './components/display';
 
 function App() {
     const [formData, setFormData] = useState([
@@ -47,15 +48,23 @@ function App() {
 
     return (
         <>
-            <GeneralInfoForm
-                initialGeneralData={formData[0]}
-                onFormDataChange={handleFormData}
-            ></GeneralInfoForm>
-            <EducationForm
-                initialEducationData={formData[1]}
-                onFormDataChange={handleFormData}
-            ></EducationForm>
-            <WorkForm initialWorkData={formData[2]} onFormDataChange={handleFormData}></WorkForm>
+            <div>
+                <GeneralInfoForm
+                    initialGeneralData={formData[0]}
+                    onFormDataChange={handleFormData}
+                ></GeneralInfoForm>
+                <EducationForm
+                    initialEducationData={formData[1]}
+                    onFormDataChange={handleFormData}
+                ></EducationForm>
+                <WorkForm
+                    initialWorkData={formData[2]}
+                    onFormDataChange={handleFormData}
+                ></WorkForm>
+            </div>
+            <div>
+                <DisplayCV formData={formData}></DisplayCV>
+            </div>
         </>
     );
 }

@@ -1,12 +1,31 @@
 #root {
     max-width: 1280px;
     margin: 0 auto;
-    /* padding: 15rem 25rem; */
+    padding: 2rem 5rem;
     text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
 }
 
 * {
-    /* outline: dashed darkblue; */
+    /* outline: dashed 1px rebeccapurple; */
+}
+#root > div:nth-child(2) {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea {
+    resize: none;
+    display: block;
+    width: 100%;
+}
+
+hr {
+    width: 95%;
 }
 
 section {
