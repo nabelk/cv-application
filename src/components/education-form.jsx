@@ -47,6 +47,8 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
                         handleInputChange(e, list.id, 'school');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='Degree'
                     placeholder='Enter Degree'
@@ -55,6 +57,8 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
                         handleInputChange(e, list.id, 'degree');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='Start date'
                     value={list.start_date}
@@ -62,6 +66,8 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
                         handleInputChange(date, list.id, 'start_date');
                     }}
                 ></Input>
+            </li>
+            <li>
                 <Input
                     label='End date'
                     value={list.end_date}
