@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Input } from './input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 export function WorkForm({ initialWorkData, onFormDataChange }) {
     const [workList, setWorkList] = useState(initialWorkData);
+    const [showWork, setShowWork] = useState(false);
 
     const handleAddExperience = () => {
         const newWorkList = [
@@ -26,18 +29,25 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
         setWorkList(newWorkList);
         onFormDataChange(newWorkList, 2);
     };
-
-    const handleInputChange = (e, listId, field) => {
+    const handleInputChange = (e, listId, field, checkNewLine) => {
+        const checkValue = checkNewLine ? e.target.value + '\n' : e.target.value;
         const newWorkList = workList.map((work) =>
             work.id === listId
                 ? {
                       ...work,
-                      [field]: field.includes('date') ? e : e.target.value,
+                      [field]: field.includes('date') ? e : checkValue,
                   }
                 : work,
         );
         setWorkList(newWorkList);
         onFormDataChange(newWorkList, 2);
+    };
+
+    const handleKeyDown = (e, listId, field) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleInputChange(e, listId, field, true);
+        }
     };
 
     const listItems = workList.map((list) => (
@@ -81,6 +91,11 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
                     placeholder='Enter description about the job'
                     cols='30'
                     rows='10'
+                    value={list.description}
+                    onChange={(e) => {
+                        handleInputChange(e, list.id, 'description');
+                    }}
+                    onKeyDown={(e) => handleKeyDown(e, list.id, 'description')}
                 ></textarea>
             </li>
             <li>
@@ -106,9 +121,20 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
 
     return (
         <section>
-            <h2>Work Experience</h2>
-            <div>{listItems}</div>
-            <button onClick={handleAddExperience}>Add Experience</button>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h2>Work Experience </h2>
+                <span onClick={() => (showWork ? setShowWork(false) : setShowWork(true))}>
+                    {!showWork ? (
+                        <FontAwesomeIcon icon={faCaretDown} />
+                    ) : (
+                        <FontAwesomeIcon icon={faCaretUp} />
+                    )}
+                </span>
+            </div>
+            <div style={{ display: !showWork ? 'none' : 'block' }}>{listItems}</div>
+            <button style={{ display: !showWork ? 'none' : 'block' }} onClick={handleAddExperience}>
+                Add Experience
+            </button>
         </section>
     );
 }
