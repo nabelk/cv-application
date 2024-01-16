@@ -31,15 +31,18 @@ export function DisplayCV({ formData }) {
                 }}
             >
                 <h4 style={{ marginTop: '15px', justifySelf: 'start' }}>EXPERIENCE</h4>
-                <div style={{ marginTop: '13.5px', justifySelf: 'start' }}>
-                    {work.map((info) => (
-                        <div key={info.id}>
-                            <h4 style={{ marginTop: '0' }}>{info.title}</h4>
-                            <h4>
+                <div style={{ marginTop: '13.5px', justifySelf: 'start', textAlign: 'left' }}>
+                    {work.map((info, idx) => (
+                        <div
+                            key={info.id}
+                            style={{ marginBottom: idx < work.length - 1 ? '2.5rem' : '1.3rem' }}
+                        >
+                            <h4 style={{ marginTop: '0', marginBottom: '0' }}>{info.title}</h4>
+                            <h4 style={{ marginBottom: '0', marginTop: '6px' }}>
                                 <span>{info.company_name}</span> -{' '}
                                 <span>{info.employment_type}</span>
                             </h4>
-                            <h4>
+                            <h4 style={{ marginBottom: '12px', marginTop: '6px' }}>
                                 <span>
                                     {info.start_date.toLocaleString('en-US', { month: 'long' })}{' '}
                                     {info.start_date.getFullYear()}
@@ -50,10 +53,19 @@ export function DisplayCV({ formData }) {
                                     {info.end_date.getFullYear()}
                                 </span>
                             </h4>
+                            {info.description.split('\n').map((paragraph, index) => (
+                                <p
+                                    key={index}
+                                    style={{ margin: index !== 0 ? '-2px 0' : 'initial' }}
+                                >
+                                    {paragraph}
+                                </p>
+                            ))}
                         </div>
                     ))}
                 </div>
             </div>
+            <hr />
         </>
     );
 }
