@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Input } from './input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 export function EducationForm({ initialEducationData, onFormDataChange }) {
     const [educationList, setEducationList] = useState(initialEducationData);
+    const [showEdu, setShowEdu] = useState(false);
 
     const handleAddEducation = () => {
         const newEducationList = [
@@ -81,9 +84,20 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
 
     return (
         <section>
-            <h2>Education</h2>
-            <div>{listItems}</div>
-            <button onClick={handleAddEducation}>Add Education</button>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h2>Education </h2>
+                <span onClick={() => (showEdu ? setShowEdu(false) : setShowEdu(true))}>
+                    {!showEdu ? (
+                        <FontAwesomeIcon icon={faCaretDown} />
+                    ) : (
+                        <FontAwesomeIcon icon={faCaretUp} />
+                    )}
+                </span>
+            </div>
+            <div style={{ display: !showEdu ? 'none' : 'block' }}>{listItems}</div>
+            <button style={{ display: !showEdu ? 'none' : 'block' }} onClick={handleAddEducation}>
+                Add Education
+            </button>
         </section>
     );
 }

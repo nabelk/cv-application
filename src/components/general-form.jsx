@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Input } from './input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
     const [personalInfo, setPersonalInfo] = useState(initialGeneralData);
+    const [showPersonalInfo, setShowPersonalInfo] = useState(false);
 
     const handleInputChange = (e, field) => {
         const newPersonalInfo = [{ ...personalInfo[0], [field]: e.target.value }];
@@ -11,7 +14,7 @@ export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
     };
 
     const listItems = personalInfo.map((info, idx) => (
-        <ul key={idx} style={{ listStyle: 'none' }}>
+        <ul key={idx} style={{ listStyle: 'none', display: !showPersonalInfo ? 'none' : 'block' }}>
             <li>
                 <Input
                     label='First Name'
@@ -57,7 +60,20 @@ export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
 
     return (
         <section>
-            <h2>General Information</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h2>General Information </h2>
+                <span
+                    onClick={() =>
+                        showPersonalInfo ? setShowPersonalInfo(false) : setShowPersonalInfo(true)
+                    }
+                >
+                    {!showPersonalInfo ? (
+                        <FontAwesomeIcon icon={faCaretDown} />
+                    ) : (
+                        <FontAwesomeIcon icon={faCaretUp} />
+                    )}
+                </span>
+            </div>
             {listItems}
         </section>
     );
