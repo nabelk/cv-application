@@ -38,11 +38,17 @@ export function DisplayCV({ formData }) {
                             style={{ marginBottom: idx < work.length - 1 ? '2.5rem' : '1.3rem' }}
                         >
                             <h4 style={{ marginTop: '0', marginBottom: '0' }}>{info.title}</h4>
-                            <h4 style={{ marginBottom: '0', marginTop: '6px' }}>
+                            <p style={{ marginBottom: '0', marginTop: '3px', fontSize: '0.95rem' }}>
                                 <span>{info.company_name}</span> -{' '}
                                 <span>{info.employment_type}</span>
-                            </h4>
-                            <h4 style={{ marginBottom: '12px', marginTop: '6px' }}>
+                            </p>
+                            <p
+                                style={{
+                                    marginBottom: '12px',
+                                    marginTop: '3px',
+                                    fontSize: '0.95rem',
+                                }}
+                            >
                                 <span>
                                     {info.start_date.toLocaleString('en-US', { month: 'long' })}{' '}
                                     {info.start_date.getFullYear()}
@@ -52,11 +58,14 @@ export function DisplayCV({ formData }) {
                                     {info.end_date.toLocaleString('en-US', { month: 'long' })}{' '}
                                     {info.end_date.getFullYear()}
                                 </span>
-                            </h4>
+                            </p>
                             {info.description.split('\n').map((paragraph, index) => (
                                 <p
                                     key={index}
-                                    style={{ margin: index !== 0 ? '-2px 0' : 'initial' }}
+                                    style={{
+                                        margin: index !== 0 ? '-2px 0' : 'initial',
+                                        fontSize: '0.95rem',
+                                    }}
                                 >
                                     {paragraph}
                                 </p>
@@ -66,6 +75,33 @@ export function DisplayCV({ formData }) {
                 </div>
             </div>
             <hr />
+            <div
+                style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '25px',
+                    width: '90%',
+                }}
+            >
+                <h4 style={{ marginTop: '15px', justifySelf: 'start' }}>EDUCATION</h4>
+                <div style={{ marginTop: '13.5px', justifySelf: 'start', textAlign: 'left' }}>
+                    {education.map((edu, idx) => (
+                        <div
+                            key={edu.id}
+                            style={{ marginBottom: idx < work.length - 1 ? '2.5rem' : '1.3rem' }}
+                        >
+                            <h4 style={{ marginTop: '0', marginBottom: '0' }}>{edu.degree}</h4>
+                            <p style={{ marginTop: '6px', fontSize: '0.95rem' }}>
+                                <span>{edu.school}</span> |{' '}
+                                <span>
+                                    {edu.start_date.getFullYear()} {'  '}-{'  '}
+                                    {edu.end_date.getFullYear()}
+                                </span>
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </>
     );
 }
