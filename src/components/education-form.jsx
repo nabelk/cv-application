@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input } from './input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export function EducationForm({ initialEducationData, onFormDataChange }) {
     const [educationList, setEducationList] = useState(initialEducationData);
@@ -40,7 +40,9 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
 
     const listItems = educationList.map((list) => (
         <ul key={list.id} style={{ listStyle: 'none' }}>
-            <button onClick={() => handleDeleteEducation(list.id)}>Delete</button>
+            <button onClick={() => handleDeleteEducation(list.id)}>
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
             <li>
                 <Input
                     label='School'
@@ -83,7 +85,7 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
     ));
 
     return (
-        <section>
+        <section style={{ padding: !showEdu ? '0.5rem 2rem' : '1.5rem 2rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>Education </h2>
                 <span onClick={() => (showEdu ? setShowEdu(false) : setShowEdu(true))}>

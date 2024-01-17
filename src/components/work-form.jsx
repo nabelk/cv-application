@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Input } from './input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export function WorkForm({ initialWorkData, onFormDataChange }) {
     const [workList, setWorkList] = useState(initialWorkData);
@@ -52,7 +52,9 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
 
     const listItems = workList.map((list) => (
         <ul key={list.id} style={{ listStyle: 'none' }}>
-            <button onClick={() => handleDeleteExperience(list.id)}>Delete</button>
+            <button onClick={() => handleDeleteExperience(list.id)}>
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
             <li>
                 <Input
                     label='Title'
@@ -120,7 +122,7 @@ export function WorkForm({ initialWorkData, onFormDataChange }) {
     ));
 
     return (
-        <section>
+        <section style={{ padding: !showWork ? '0.5rem 2rem' : '1.5rem 2rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>Work Experience </h2>
                 <span onClick={() => (showWork ? setShowWork(false) : setShowWork(true))}>
