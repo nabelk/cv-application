@@ -14,7 +14,7 @@ export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
     };
 
     const listItems = personalInfo.map((info, idx) => (
-        <ul key={idx} style={{ listStyle: 'none', display: !showPersonalInfo ? 'none' : 'block' }}>
+        <ul key={idx} style={{ listStyle: 'none', display: !showPersonalInfo ? 'none' : 'flex' }}>
             <li>
                 <Input
                     label='First Name'
@@ -59,7 +59,7 @@ export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
     ));
 
     return (
-        <section>
+        <section style={{ padding: !showPersonalInfo ? '0.5rem 2rem' : '1.5rem 2rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h2>General Information </h2>
                 <span
