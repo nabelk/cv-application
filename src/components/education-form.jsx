@@ -63,24 +63,32 @@ export function EducationForm({ initialEducationData, onFormDataChange }) {
                     }}
                 ></Input>
             </li>
-            <li>
-                <Input
-                    label='Start date'
-                    value={list.start_date}
-                    onChange={(date) => {
-                        handleInputChange(date, list.id, 'start_date');
-                    }}
-                ></Input>
-            </li>
-            <li>
-                <Input
-                    label='End date'
-                    value={list.end_date}
-                    onChange={(date) => {
-                        handleInputChange(date, list.id, 'end_date');
-                    }}
-                ></Input>
-            </li>
+            <div
+                style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '9px',
+                }}
+            >
+                <li>
+                    <Input
+                        label='Start date'
+                        value={list.start_date}
+                        onChange={(date) => {
+                            handleInputChange(date, list.id, 'start_date');
+                        }}
+                    ></Input>
+                </li>
+                <li>
+                    <Input
+                        label='End date'
+                        value={list.end_date}
+                        onChange={(date) => {
+                            handleInputChange(date, list.id, 'end_date');
+                        }}
+                    ></Input>
+                </li>
+            </div>
         </ul>
     ));
 

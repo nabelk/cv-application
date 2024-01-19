@@ -5,7 +5,7 @@ import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 export function GeneralInfoForm({ initialGeneralData, onFormDataChange }) {
     const [personalInfo, setPersonalInfo] = useState(initialGeneralData);
-    const [showPersonalInfo, setShowPersonalInfo] = useState(false);
+    const [showPersonalInfo, setShowPersonalInfo] = useState(true);
 
     const handleInputChange = (e, field) => {
         const newPersonalInfo = [{ ...personalInfo[0], [field]: e.target.value }];

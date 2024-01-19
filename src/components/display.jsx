@@ -91,7 +91,13 @@ export function DisplayCV({ formData }) {
                             style={{ marginBottom: idx < work.length - 1 ? '2.5rem' : '1.3rem' }}
                         >
                             <h4 style={{ marginTop: '0', marginBottom: '0' }}>{edu.degree}</h4>
-                            <p style={{ marginTop: '6px', fontSize: '0.95rem' }}>
+                            <p
+                                style={{
+                                    marginTop: '6px',
+                                    fontSize: '0.95rem',
+                                    display: edu.school === '' ? 'none' : 'block',
+                                }}
+                            >
                                 <span>{edu.school}</span> |{' '}
                                 <span>
                                     {edu.start_date.getFullYear()} {'  '}-{'  '}
