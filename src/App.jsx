@@ -4,6 +4,7 @@ import { GeneralInfoForm } from './components/general-form';
 import { EducationForm } from './components/education-form';
 import { WorkForm } from './components/work-form';
 import { DisplayCV } from './components/display';
+import { Header } from './components/header';
 
 function App() {
     const [formData, setFormData] = useState([
@@ -62,9 +63,10 @@ function App() {
                     onFormDataChange={handleFormData}
                 ></WorkForm>
             </div>
-            <div>
+            <div id='pdf-content'>
                 <DisplayCV formData={formData}></DisplayCV>
             </div>
+            <Header></Header>
         </>
     );
 }

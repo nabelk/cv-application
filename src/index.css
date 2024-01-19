@@ -27,6 +27,27 @@ body {
     display: flex;
     min-width: 320px;
     min-height: 100vh;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #63686e;
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+header button {
+    font-size: 0.85em !important;
+}
+
+header div:nth-child(2) {
+    grid-column: 4;
 }
 
 h1 {
