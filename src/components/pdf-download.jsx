@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-export function PdfDownloadComponent() {
+export function PdfDownload() {
     const handleDownloadPDF = () => {
         const input = document.getElementById('pdf-content');
         html2canvas(input, {
