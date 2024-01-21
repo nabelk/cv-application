@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { GeneralInfoForm } from './components/general-form';
 import { EducationForm } from './components/education-form';
@@ -20,10 +20,10 @@ function App() {
         [
             {
                 id: 1,
-                degree: 'Bachelor of Science in Computer Science',
-                school: 'University XYZ',
-                start_date: new Date('2022-05-02'),
-                end_date: new Date('2022-12-31'),
+                degree: 'Bachelor in Computer Science',
+                school: "Taylor's University",
+                start_date: new Date('2015-05-02'),
+                end_date: new Date('2017-12-31'),
             },
         ],
         [
@@ -32,12 +32,33 @@ function App() {
                 title: 'Frontend Developer',
                 company_name: 'Google',
                 employment_type: 'Contract',
-                description: '',
-                start_date: new Date('2022-05-02'),
-                end_date: new Date('2022-12-31'),
+                description:
+                    '- Implemented and maintained front-end web applications, resulting in a 10% increase in website traffic and conversion rates.\n - Developed and executed front-end development strategies, resulting in a 15% increase in website performance.',
+                start_date: new Date('2019-05-02'),
+                end_date: new Date('2020-12-31'),
             },
         ],
     ]);
+    // State for tablet/mobile sidebar
+    const [sidebarVisible, setSidebarVisible] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+            setSidebarVisible(window.innerWidth >= 1200);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const togglesideBar = () => {
+        setSidebarVisible(!sidebarVisible);
+    };
 
     const handleFormData = (newDataChange, idx) => {
         setFormData((prevFormData) => {
@@ -49,7 +70,7 @@ function App() {
 
     return (
         <>
-            <div>
+            <div style={{ display: sidebarVisible ? 'flex' : 'none' }}>
                 <GeneralInfoForm
                     initialGeneralData={formData[0]}
                     onFormDataChange={handleFormData}
@@ -63,10 +84,11 @@ function App() {
                     onFormDataChange={handleFormData}
                 ></WorkForm>
             </div>
+            {/* Id pdf-content is a reference for jsPDF */}
             <div id='pdf-content'>
                 <DisplayCV formData={formData}></DisplayCV>
             </div>
-            <Header></Header>
+            <Header togglesideBar={togglesideBar}></Header>
         </>
     );
 }
