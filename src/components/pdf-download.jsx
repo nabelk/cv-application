@@ -27,7 +27,7 @@ export function PdfDownload() {
     };
     return (
         <div>
-            <button onClick={handleDownloadPDF}>Download PDF</button>
+            <button onClick={handleDownloadPDF}>Download Resume</button>
         </div>
     );
 }
