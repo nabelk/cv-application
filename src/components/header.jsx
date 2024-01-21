@@ -1,7 +1,6 @@
 import { PdfDownload } from './pdf-download';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { ReactSVG } from 'react-svg';
 
 export function Header({ togglesideBar }) {
     return (
@@ -15,7 +14,7 @@ export function Header({ togglesideBar }) {
             <div>
                 <a href='https://github.com/nabelk'>
                     <button title='Check my github profile'>
-                        <img src='../../public/github-logo.png' alt='github logo' />
+                        <img src={'/public/github-logo.png'} alt='github logo' />
                     </button>
                 </a>
                 <PdfDownload></PdfDownload>
