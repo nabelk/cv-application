@@ -15,7 +15,7 @@ export function Header({ togglesideBar }) {
             <div>
                 <a href='https://github.com/nabelk'>
                     <button title='Check my github profile'>
-                        <ReactSVG src='../../public/github-logo.svg'></ReactSVG>
+                        <img src='../../public/github-logo.png' alt='github logo' />
                     </button>
                 </a>
                 <PdfDownload></PdfDownload>
