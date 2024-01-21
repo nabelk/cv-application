@@ -2,15 +2,11 @@
     width: 1280px;
     margin: 0 auto;
     padding: 2rem 5rem;
-    padding-top: 4rem;
+    padding-top: 5rem !important;
     text-align: center;
     display: grid;
     grid-template-columns: 45% 55%;
     gap: 22px;
-}
-
-* {
-    /* outline: dashed 1px rebeccapurple; */
 }
 
 #root > div:nth-child(2) {
@@ -26,6 +22,28 @@
     height: 90vh;
     position: sticky;
     top: 10px;
+    overflow-y: auto;
+}
+
+header > div:first-child,
+header > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+header > div:nth-child(2) {
+    gap: 3%;
+    padding-right: 1rem;
+}
+
+header > div:first-child button {
+    display: none;
+}
+
+header > div:nth-child(2) a button {
+    background-color: inherit;
 }
 
 textarea {
@@ -46,14 +64,15 @@ div:has(section) {
 
 section {
     background-color: lightslategrey;
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 0.8rem;
+    transition: 0.8s ease-in-out;
 }
 
-section > div:first-child > span {
+section > div:first-child > span,
+section span:has(svg) {
     cursor: pointer;
 }
 
@@ -102,6 +121,14 @@ section ul li textarea {
     border-radius: 4px;
 }
 
+section ul div:has(button) {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: large;
+}
+
 section ul button {
     align-self: flex-end;
     padding: 8px;
@@ -121,4 +148,71 @@ div.react-datepicker__input-container input {
     width: 90%;
     float: left;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1230px) {
+    #root {
+        padding: 2rem 3rem;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #root {
+        grid-template-columns: 1fr;
+        padding: 2rem 15%;
+        position: relative;
+    }
+
+    #root > div:first-child {
+        position: absolute;
+        top: 5.4%;
+        background-color: lightgrey;
+        z-index: 1;
+        width: 50%;
+        padding: 2rem 1.5rem;
+    }
+
+    header > div:first-child button {
+        display: initial;
+        padding: 0;
+        background-color: inherit;
+    }
+
+    header > div:first-child button:focus {
+        outline: none;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #root {
+        padding: 2rem 3%;
+        padding-top: 5rem !important;
+    }
+
+    #root > div:first-child {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 844px) {
+    #root > div:first-child {
+        top: 7%;
+    }
+}
+
+@media only screen and (max-width: 626px) {
+    header > div:first-child {
+        padding-left: 1rem;
+    }
+}
+
+@media only screen and (max-width: 607px) {
+    #root > div:first-child {
+        top: 10%;
+    }
+
+    section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
 }
