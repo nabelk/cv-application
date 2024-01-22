@@ -45,8 +45,11 @@ function App() {
 
     useEffect(() => {
         const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-            setSidebarVisible(window.innerWidth >= 1200);
+            const newWidth = window.innerWidth;
+            if (newWidth !== windowWidth) {
+                setWindowWidth(newWidth);
+                setSidebarVisible(newWidth >= 1200);
+            }
         };
 
         window.addEventListener('resize', handleResize);
@@ -54,7 +57,7 @@ function App() {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    });
 
     const togglesideBar = () => {
         setSidebarVisible(!sidebarVisible);
